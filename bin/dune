@@ -1,0 +1,6 @@
+(executable
+ (public_name rubik_timer)
+ (name main)
+ (libraries rubik_timer core async cmdliner)
+ (preprocess
+  (pps ppx_inline_test)))
