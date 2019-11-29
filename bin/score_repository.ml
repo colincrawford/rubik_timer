@@ -3,24 +3,21 @@ open Async
 
 type t = { file_name : string }
 
-let create ?(file_name="rubiks_scores.txt") () = { file_name }
+let create ?(file_name = "rubiks_scores.txt") () = { file_name }
 
 let save_score repo score =
   let serialized_score = Score.to_string score in
-  Writer.with_file
-    ~append:true
-    repo.file_name
-    ~f:(fun writer -> return (Writer.write_line writer serialized_score))
-  >>| (const score)
+  let write_scores writer =
+    return (Writer.write_line writer serialized_score)
+  in
+  let%map () = Writer.with_file ~append:true repo.file_name ~f:write_scores in
+  score
 
 let get_scores repo =
-  Async.Sys.file_exists repo.file_name >>= function
-  | `Yes -> begin 
-    Reader.file_contents repo.file_name
-    >>| (fun file_content -> String.split ~on:'\n' file_content)
-    >>| (fun serialized_scores -> List.map ~f:Score.of_string serialized_scores)
-  end
+  let%bind file_exists = Async.Sys.file_exists repo.file_name in
+  match file_exists with
+  | `Yes ->
+      let%map file_content = Reader.file_contents repo.file_name in
+      let serialized_scores = String.split ~on:'\n' file_content in
+      List.map ~f:Score.of_string serialized_scores
   | _ -> return []
-
-
-
