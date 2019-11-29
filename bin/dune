@@ -3,4 +3,4 @@
  (name main)
  (libraries rubik_timer core async cmdliner)
  (preprocess
-  (pps ppx_inline_test)))
+  (pps ppx_let)))
