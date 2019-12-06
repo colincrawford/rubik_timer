@@ -1,0 +1,11 @@
+lib: [
+  "_build/install/default/lib/rubik_timer/META"
+  "_build/install/default/lib/rubik_timer/dune-package"
+  "_build/install/default/lib/rubik_timer/opam"
+]
+bin: [
+  "_build/install/default/bin/rubik_timer"
+]
+doc: [
+  "_build/install/default/doc/rubik_timer/README.md"
+]

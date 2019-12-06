@@ -1,5 +1,6 @@
 open Core
 open Async
+open Rubiks_score
 
 type t = { file_name : string }
 

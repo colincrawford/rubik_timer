@@ -1,6 +1,8 @@
 open Core
 open Async
-open Rubik_timer
+open Rubiks_timer
+open Rubiks_score
+open Rubiks_score_repository
 
 let stdin = Lazy.force Reader.stdin
 

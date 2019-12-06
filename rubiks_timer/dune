@@ -1,6 +1,6 @@
 (library
  (inline_tests (flags (-verbose)))
- (name rubik_timer)
+ (name rubiks_timer)
  (libraries core cmdliner)
  (preprocess
   (pps ppx_inline_test)))

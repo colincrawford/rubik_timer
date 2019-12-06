@@ -1,4 +1,4 @@
-open Rubik_timer
+open Rubiks_timer
 
 type t
 

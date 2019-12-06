@@ -1,4 +1,5 @@
 open Async
+open Rubiks_score
 
 type t
 

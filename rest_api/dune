@@ -1,0 +1,5 @@
+(executable
+ (name main)
+ (libraries httpaf httpaf-async dispatch core async)
+ (preprocess
+  (pps ppx_let)))

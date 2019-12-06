@@ -1,0 +1,6 @@
+(library
+ (name rubiks_score_repository)
+ (inline_tests (flags (-verbose)))
+ (libraries rubiks_score core async)
+ (preprocess
+  (pps ppx_let ppx_inline_test)))
