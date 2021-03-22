@@ -1,6 +1,6 @@
 (library
  (name rubiks_score)
  (inline_tests (flags (-verbose)))
- (libraries rubiks_timer core)
+ (libraries rubiks_timer core yojson)
  (preprocess
   (pps ppx_inline_test)))

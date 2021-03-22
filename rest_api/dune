@@ -1,5 +1,12 @@
 (executable
  (name main)
- (libraries httpaf httpaf-async dispatch core async)
+ (libraries
+   httpaf
+   httpaf-async
+   dispatch
+   core
+   async
+   rubiks_score
+   rubiks_score_repository)
  (preprocess
   (pps ppx_let)))

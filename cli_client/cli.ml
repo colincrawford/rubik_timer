@@ -25,12 +25,12 @@ let rec run_timer_loop score_repo =
       let timer = Timer.stop_timer timer in
       let score = Score.of_timer timer in
       let%bind score = Score_repository.save_score score_repo score in
-      let%bind () = log_to_stdout (Score.to_string score ^ "\n") in
+      let%bind () = log_to_stdout (Score.to_json score ^ "\n") in
       run_timer_loop score_repo
 
 let create_intro_msg previous_scores =
   let previous_scores_str =
-    List.map ~f:(fun score -> Score.to_string score ^ "\n") previous_scores
+    List.map ~f:(fun score -> Score.to_json score ^ "\n") previous_scores
     |> List.fold ~init:"" ~f:( ^ )
   in
   let intro_message =

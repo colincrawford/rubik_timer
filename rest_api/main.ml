@@ -4,6 +4,19 @@ open Httpaf
 open Httpaf_async
 open Dispatch
 
+open Rubiks_score
+open Rubiks_score_repository
+
+let score_repo = Score_repository.create ()
+
+let get_scores_handler _keys _rest reqd =
+  let scores = Score_repository.get_scores score_repo in
+  let scores_json = Score.l
+  let headers = Headers.of_list ["connection", "close"] in
+  let response = Response.create ~headers `OK in
+  Reqd.respond_with_string reqd response "Hi there!\n"
+
+
 let home_handler _keys _rest reqd =
   let headers = Headers.of_list ["connection", "close"] in
   let response = Response.create ~headers `OK in

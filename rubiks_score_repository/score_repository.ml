@@ -7,7 +7,7 @@ type t = { file_name : string }
 let create ?(file_name = "rubiks_scores.txt") () = { file_name }
 
 let save_score repo score =
-  let serialized_score = Score.to_string score in
+  let serialized_score = Score.to_json score in
   let write_scores writer =
     return (Writer.write_line writer serialized_score)
   in
@@ -20,5 +20,8 @@ let get_scores repo =
   | `Yes ->
       let%map file_content = Reader.file_contents repo.file_name in
       let serialized_scores = String.split ~on:'\n' file_content in
-      List.map ~f:Score.of_string serialized_scores
+      serialized_scores
+      |> List.map ~f:Score.from_json
+      |> List.filter ~f:Option.is_some
+      |> List.map ~f:Caml.Option.get
   | _ -> return []

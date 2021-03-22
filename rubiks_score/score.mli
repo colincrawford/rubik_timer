@@ -4,6 +4,8 @@ type t
 
 val of_timer: Timer.t -> t
 
-val to_string: t -> string
+val to_json: t -> string
 
-val of_string: string -> t
+val list_to_json: t list -> string
+
+val from_json: string -> t option
